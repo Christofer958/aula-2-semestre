@@ -1,23 +1,26 @@
-function mostrarTabuada() {
-    const num = document.getElementById('numero').value;
-    const res = document.getElementById('resultado');
 
-    if (num < 1 || num > 10 || num === '') {
-        res.innerHTML = '<p>Por favor, digite um número válido entre 1 e 10!</p>';
-        return;
+const botaoIdade = document.getElementById("verificar");
+const resultadoIdade = document.getElementById("resultadoIdade");
+const finalizacaoIdade = document.getElementById("finalizacaoIdade");
+
+botaoIdade.addEventListener("click", function () {
+
+    finalizacaoIdade.textContent = "";
+    try {
+        const textoIdade = document.getElementById("idade").value;
+
+        const idade = Number(textoIdade);
+
+        if(idade < 18) {
+            throw new Error("acesso permitido apenas para maiores de idade");
+        }
+
+        resultadoIdade.textContent = "acesso autorizado";
+
+    } catch (erro) {
+        resultadoIdade.textContent = "erro:" + erro.message;
+    }finally {
+        finalizacaoIdade.textContent = "verificação concluida";
     }
-
-    const numeroConvertido = Number(num);
-    let saida = `<h3>Tabuada do ${numeroConvertido}</h3><ul>`;
-    for (let i = 1; i <= 10; i++) {
-        saida += `<li>${numeroConvertido} × ${i} = ${numeroConvertido * i}</li>`;
-    }
-    saida += '</ul>';
-
-    res.innerHTML = saida;
 }
-
-function limpar() {
-    document.getElementById('numero').value = '';
-    document.getElementById('resultado').innerHTML = '';
-}
+)
