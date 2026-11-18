@@ -1,26 +1,30 @@
+const botao = document.getElementById("calcular");
+const resultado = document.getElementById("resultado");
 
-const botaoIdade = document.getElementById("verificar");
-const resultadoIdade = document.getElementById("resultadoIdade");
-const finalizacaoIdade = document.getElementById("finalizacaoIdade");
+function calcularDesconto(preco, porcentagem) {
+    const valorDesconto = preco * porcentagem / 100;
 
-botaoIdade.addEventListener("click", function () {
+    return preco - valorDesconto;
+}
 
-    finalizacaoIdade.textContent = "";
-    try {
-        const textoIdade = document.getElementById("idade").value;
+function formatarMoeda(valor) {
+    return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL"});
+}
 
-        const idade = Number(textoIdade);
+botao.addEventListener("click", function () {
+    const textoPreco = document.getElementById("preco").value;
+    const textoDesconto = document.getElementById("desconto").value;
+    const preco = Number(textoPreco);
+    const desconto = Number(textoDesconto);
 
-        if(idade < 18) {
-            throw new Error("acesso permitido apenas para maiores de idade");
+    if (textoPreco === "" || textoDesconto === "" ||
+        !Number.isFinite(preco) || !Number.isFinite(desconto) ||
+        preco < 0 || desconto < 0 || desconto > 100) {
+            resultado.textContent = "Informe um preço válido e um desconto entre 0 e 100%.";
+            return;
         }
 
-        resultadoIdade.textContent = "acesso autorizado";
+        const precoFinal = calcularDesconto(preco, desconto);
 
-    } catch (erro) {
-        resultadoIdade.textContent = "erro:" + erro.message;
-    }finally {
-        finalizacaoIdade.textContent = "verificação concluida";
-    }
-}
-)
+        resultado.textContent = "Preço final: " + formatarMoeda(precoFinal);
+})

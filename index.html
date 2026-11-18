@@ -7,15 +7,16 @@
 </head>
 <body>
     <main>
-        <h1>TRATAMENTO DE EXCEÇOES</h1>
-        <p><strong> Try e Catch</strong></p>
+        <h1>Aula 08 - FUNÇÕES</h1>
+        <p>Reune comandos que podem ser chamados varias vezes</p>
         <section>
-            <h2>Exemplo 1: Verificação de idade</h2>
-            <label for="idade">Digite sua idade:</label>
-            <input type="number" id="idade" placeholder="Digite sua idade">
-            <button type="button" id="verificar">Verificar acesso</button>
-            <p id="resultadoIdade" class="resultado">0 resultado aparecera aqui</p>
-            <p id="finalizacaoIdade" class="observacao"></p>
+            <h2>Calculadora de desconto</h2>
+            <label for="preco">Preço do produto:</label>
+            <input type="number" id="preco" min="0" placeholder="Ex.: 100">
+            <label for="desconto">Desconto (%):</label>
+            <input type="number" id="desconto" min="0" max="100" placeholder="Ex.:10">
+            <button type="button" id="calcular">Calcular desconto</button>
+            <p id="resultado" class="resultado" role="status">Resultado do desconto.</p>
         </section>
     </main>
     <script src="script.js"></script>
